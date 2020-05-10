@@ -2,16 +2,15 @@ const express = require("express")
 const router = express.Router();
 const User = require("../models/User")
 
-router.get("/", async (req, res) => {
-  res.send("This is auth page!")
-  // try {
-  //   const user = await User.find();
-  //   res.json(user)
-  // } catch (err) {
-  //   res.json({
-  //     message: err
-  //   })
-  // }
+router.get("/users", async (req, res) => {
+  try {
+    const user = await User.find();
+    res.json(user)
+  } catch (err) {
+    res.json({
+      message: err
+    })
+  }
 })
 
 router.get("/specific", (req, res) => {
@@ -43,21 +42,23 @@ router.get("/:postId", async (req, res) => {
 })
 
 // delete a specific post using id
-router.delete("/:postId", async (req, res) => {
+router.delete("/:userId", async (req, res) => {
   try {
-    const deletedUser = await User.deleteOne({ _id: req.params.UserId })
+    const deletedUser = await User.deleteOne({ _id: req.params.userId })
     res.json(deletedUser)
   } catch (err) {
     res.json(err)
   }
 })
 //update a post
-router.patch("/:postId", async (req, res) => {
+router.patch("/:userId", async (req, res) => {
   try {
-    const updatedUser = await User.updateOne({ _id: req.params.postId }, {
+    const updatedUser = await User.updateOne({ _id: req.params.userId }, {
       $set: {
-        title: req.body.title,
-        description: req.body.description,
+        name: req.body.name,
+        email: req.body.email,
+        contact: req.body.contact,
+        password: req.body.password,
       }
     })
     res.json(updatedUser)
