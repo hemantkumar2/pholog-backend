@@ -8,10 +8,12 @@ require("dotenv/config")
 
 const postsRoute = require("./routes/post")
 const usersRoute = require("./routes/user")
+const authUser = require("./routes/auth")
 
 app.use(bodyParser.json())
 app.use("/posts", postsRoute)
 app.use("/users", usersRoute)
+app.use("/auth", authUser)
 // ROUTES 
 app.get("/", (req, res) => {
   res.send("home page!")
