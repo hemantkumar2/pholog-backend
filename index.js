@@ -1,6 +1,5 @@
 const express = require("express")
 const mongoose = require("mongoose")
-const bodyParser = require("body-parser")
 
 const app = express()
 
@@ -10,7 +9,7 @@ const postsRoute = require("./routes/post")
 const usersRoute = require("./routes/user")
 const authUser = require("./routes/auth")
 
-app.use(bodyParser.json())
+app.use(express.json())
 app.use("/posts", postsRoute)
 app.use("/users", usersRoute)
 app.use("/auth", authUser)
