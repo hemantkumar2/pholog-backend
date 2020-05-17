@@ -21,7 +21,7 @@ router.get("/specific", (req, res) => {
   res.send("specific post page!")
 })
 
-// register a new User 
+// login
 router.post("/", async (req, res) => {
   const { email, password } = req.body
   if (!email || !password) {
