@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require("../models/User")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
-const config = require('../config')
+require("dotenv/config")
 const auth = require("../middleware/auth")
 
 router.get("/", async (req, res) => {
@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
           if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" })
           jwt.sign(
             { id: user.id },
-            config.jwtSecret,
+            process.env.jwtSecret,
             { expiresIn: "1d" },
             (err, token) => {
               if (err) throw err;
