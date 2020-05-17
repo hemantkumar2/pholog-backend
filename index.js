@@ -10,13 +10,13 @@ const usersRoute = require("./routes/user")
 const authUser = require("./routes/auth")
 
 app.use(express.json())
+app.get("/", (req, res) => {
+  res.send("Welcome!")
+})
 app.use("/posts", postsRoute)
 app.use("/users", usersRoute)
 app.use("/auth", authUser)
 // ROUTES 
-app.get("/", (req, res) => {
-  res.send("home page!")
-})
 
 
 // connect to DB 
